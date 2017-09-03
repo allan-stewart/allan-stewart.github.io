@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <title>Allan Stewart - Mob Programming</title>
+        <meta name="description" content="Allan Stewart's personal website">
+        <meta name="keywords" content="software craftsman professional developer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="/favicon.jpg">
+        <link rel="shortcut icon" sizes="144x144" href="/favicon144.jpg">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+    </head>
+    <body>
+        <nav>
+            <p><a href="/">ALLAN STEWART</a></p>
+<ul>
+    <li><a href="/blog/index">Blog</a></li>
+    <li><a href="/speaking">Speaking</a></li>
+</ul>
+        </nav>
+        <div id="content">
+            <article>
+    <h1 id="mob-programming">Mob Programming</h1>
+<p><em>Originally published on Jun 2, 2017 on the <a href="https://www.pluralsight.com/tech-blog/mob-programming">Pluralsight Tech Blog</a></em></p>
+<p>When I joined Pluralsight, I knew going in that it was going to be a different kind of company.
+They were already practicing things that I&#39;d been learning about and struggling to implement in my prior company, like TDD and continuous delivery.
+But I didn&#39;t realize just how different my day-to-day work would be until I found that my team was doing something called <em>mob programming</em>.</p>
+<p>Every day I came to work, sat down near four other developers, and we worked together on a single computer connected to two 80-inch TVs on the wall.
+Together we discussed what we were working on, how we should accomplish it, and took turns on the keyboard.</p>
+<p>As a brand-new member of the team, I really appreciated that this way of working allowed me to learn as we went.
+I wasn&#39;t set in a separate cubicle, given a task and expected to figure it out by myself.
+My teammates explained what I needed to know, answered questions, and expected me to contribute more as time went on.
+But I also quickly learned that there were many more benefits to mob programming than just bringing new hires up to speed.</p>
+<h2 id="what-is-mob-programming-">What is Mob Programming?</h2>
+<p>Woody Zuill describes mob programming as a practice where you get &quot;all the brilliant people, working on the same thing, at the same time, in the same space, and at the same computer.&quot;
+You can think of it as taking pair programming and dialing it up to 11; especially if you can get a cross-functional team involved in the process.</p>
+<p>In this blog post, I want to focus on my own experience with mobbing, so I won&#39;t spend much time explaining how to mob.
+But here is how my team does it now, after a lot of experimentation:</p>
+<ul>
+<li>We have two 55-inch TVs on stands, connected to a single development-spec&#39;d computer</li>
+<li>In front of the TVs is an adjustable standing/sitting desk with at least one mouse and keyboard (sometimes several, depending on individual preferences)</li>
+<li>We run <a href="https://github.com/pluralsight/mob-timer">a mob timer we created</a> and use that to take 10 minute turns at the keyboard</li>
+<li>The person at the keyboard is the <em>driver</em> and acts as a &quot;smart keyboard&quot;; she should not type whatever she wants, but interprets the direction of the group into code</li>
+<li>The team members who are not on the keyboard discuss what should be done and give direction to the driver at the highest level of abstraction they can handle</li>
+<li>We start mobbing in the morning, take a lunch break from noon to 1pm, and mob all afternoon</li>
+<li>Members of the team are welcome to disengage from the mob to handle emails, meetings, bathroom breaks, etc. Their keyboard turn is skipped if they aren&#39;t present when the timer shows their name</li>
+</ul>
+<h2 id="are-you-serious-">Are You Serious?</h2>
+<p>When I talk with people about mobbing at conferences or local meetups, people are often surprised or skeptical about the practice.
+But when I ask them whether they ever do any kind of pair programming, they often admit that they get together with other people for &quot;hard problems.&quot;
+The trick is seeing the value in making collaboration your normal state instead of reserving it for &quot;more deserving&quot; problems.</p>
+<p>Basically, the concern is that mobbing is not productive.
+People ask, &quot;How did you get your manager to buy into it?&quot; as if there were some trick involved because <em>obviously</em> it can&#39;t be an efficient use of developer time.
+If we have two developers, we should put them on separate tasks to get twice as much done, right?</p>
+<p>The problem with that line of thinking is that we tend to imagine that everything will go smoothly.
+We forget how much time we spend on things like communication, integration, and testing.
+We forget that software development has a strongly creative aspect that is unpredictable.
+And we forget that things will take a different amount of time depending on who is working on it.</p>
+<p>Mob programming naturally favors the Lean concept of flow efficiency rather than resource efficiency.
+So if you value getting things done and delivered to your customers, then yes, mobbing is very productive.
+In my own experience, I&#39;ve observed that my team usually gets more done in a given week than any other team I&#39;ve worked on.</p>
+<h2 id="benefits">Benefits</h2>
+<p>There are many reasons why we like mob programming.
+First of all, getting the <em>best</em> of the team is better than getting the <em>most</em> out of the team (as per <a href="http://i.imgur.com/fGlgTyg.gif">this great animation</a>).
+We focus on getting the most important thing done rather than keeping everyone maximally busy.</p>
+<p>Because we discuss our work all day, communication is improved within the team and there is less need for meetings.
+Our code quality is improved because we get the best ideas from the whole team, and we <a href="https://www.pluralsight.com/tech-blog/continuous-code-reviews">continually review</a> our work.
+This leads naturally to collective code ownership.</p>
+<p>Because everyone is on the same page, we avoid delays caused by team members being unavailable (whether due to meetings, sickness, vacation, or other).
+We aren&#39;t slowed down by merge conflicts from other members of our same team.
+And we generally don&#39;t get stuck on a problem because there are lots of eyes and minds working on the problem.
+This all leads to more consistency in both speed of delivery and how we write out code.</p>
+<p>Mobbing allows us to learn from each other all the time.
+New or junior developers are able to come up to speed quickly because there is always someone there to help them.
+If there is a need to research or experiment, an individual can disengage from the mob for a while to learn.</p>
+<p>The flexibility for someone to step away from the mob also provides slack time to deal with other concerns (like email), or just to take a break.
+Social coding can be exhausting, especially when you are new to it and haven&#39;t developed the associated skills.
+This can especially help more introverted team members.</p>
+<p>If you have a team you enjoy being with, mob programming can also be a lot of fun!</p>
+<h2 id="drawbacks">Drawbacks</h2>
+<p>Mob programming is the way that my team prefers to work.
+We believe that it is the best way for our team to get the job done.
+But it won&#39;t work for everyone in every situation.</p>
+<p>Along with the question of mob programming productivity, some people feel that mobbing is overkill for trivial tasks.
+I&#39;ve found that to be partially true.
+Sometimes it&#39;s easier to just step away from the mob to do a simple one-off task.
+But other times it&#39;s easier to just have the mob quickly to it together.
+After all, it&#39;s the trivial or rote tasks that are often prone to human error; the mob helps guard against that.</p>
+<p>Mobbing is social coding, and requires some additional skills to be effective at it.
+There might be some people whose personalities clash or they just don&#39;t respect each other.
+Some coders prefer to work solo (perhaps in their cubicle cave with headphones on).
+In these cases mobbing may not be viable.</p>
+<p>Some people worry that introverts will not like mobbing.
+In my experience, that hasn&#39;t been a problem, even for some very introverted people.
+Working with a team you trust on problems for work is very different from going to a party or other types of social events.
+Introverted people usually don&#39;t have trouble talking about things they are passionate about.
+But your mileage will vary depending on the people on your team.</p>
+<p>Another potential issue around collaborative coding is that individuals may not get as much depth of knowledge.
+Sometimes the struggle to figure out a problem helps solidify your understanding.
+So if another teammate already knows a solution, you may not really learn much about the problem or the solution.
+It takes extra energy (and sometimes courage) to speak up when you don&#39;t understand.</p>
+<p>Co-location makes mobbing a lot easier.
+There are some tools that can help with remote mobbing, but it can still be a challenge.
+Additionally, because you are working &quot;at the same time&quot; it&#39;s harder to shift schedules to account for time zones or employees that want to work at different times of day.</p>
+<p>And finally, the size of the team matters.
+Two people are just a pair, not a mob.
+Three people is okay, but you&#39;re often pairing instead of mobbing because somebody has to step away.
+My team has found that the sweet spot for team size is about 4-6 developers (plus cross-functional team members as needed).
+We&#39;ve worked with more than that, but people tend to become disengaged; we&#39;ve found it better to split into two mobs at that point.</p>
+<h2 id="a-natural-way-to-work">A Natural Way to Work</h2>
+<p>After doing mob programming for a while, I found that it just felt natural.
+At one of my old jobs, for hard problems we would work together in a conference room.
+We called it &quot;the war room&quot; and it was so effective that we experimented with doing it more often.
+I don&#39;t think I&#39;d call it mob programming, but it was approaching it.</p>
+<p>I think that if we had more time, fewer preconceived notions, and perhaps a bit of guidance we could have gone for mobbing.
+Knowing what I know now, I can see where it would have solved a number of issues my team had.</p>
+<p>Mob programming might not be for you, but I encourage you to at least give it a try.
+You might be surprised.</p>
+
+    <hr>
+    <p>
+        <a href="/blog">Blog Index</a>
+        
+        <br/>Older: <a href="continuous-code-reviews">Continuous Code Reviews</a>
+    </p>
+</article>
+        </div>
+    </body>
+</html>
