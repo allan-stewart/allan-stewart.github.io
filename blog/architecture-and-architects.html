@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <title>Allan Stewart - Architecture and Architects</title>
+        <meta name="description" content="Allan Stewart's personal website">
+        <meta name="keywords" content="software craftsman professional developer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="/favicon.jpg">
+        <link rel="shortcut icon" sizes="144x144" href="/favicon144.jpg">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+    </head>
+    <body>
+        <nav>
+            <p><a href="/">ALLAN STEWART</a></p>
+<ul>
+    <li><a href="/blog/index">Blog</a></li>
+    <li><a href="/speaking">Speaking</a></li>
+</ul>
+        </nav>
+        <div id="content">
+            <article>
+    <h1 id="architecture-and-architects">Architecture and Architects</h1>
+<p><em>Originally published on Oct 6, 2017 on the <a href="https://www.pluralsight.com/tech-blog/architecture-and-architects">Pluralsight Tech Blog</a></em></p>
+<p>The software industry has always held a basic assumption that architecture is important.
+By association, the role of architect has always been esteemed important.
+But unfortunately, it isn&#39;t always clear what architecture is or what an architect&#39;s job should be.</p>
+<p>Are architects even needed, or can you just have great development teams?
+If they are needed, what should they be doing?
+Do they need to sit in ivory towers?
+If you don&#39;t have people with the title &quot;architect&quot; do you still need people effectively doing that job?
+In order to answer these questions, we need to get clear on what architecture is.</p>
+<h2 id="what-is-software-architecture-">What Is Software Architecture?</h2>
+<p>There are a number of definitions, but I like a pair that Martin Fowler has
+<a href="https://martinfowler.com/ieeeSoftware/whoNeedsArchitect.pdf">written</a>
+and <a href="https://www.youtube.com/watch?v=DngAZyWMGR0">spoken</a> about:</p>
+<blockquote>
+<p>The important stuff. Whatever that is.</p>
+</blockquote>
+<p>and</p>
+<blockquote>
+<p>A common understanding of how the thing works.</p>
+</blockquote>
+<p>The important stuff might be things like code, domain/business understanding, or system interactions.
+It could include things at high levels of abstraction; perhaps the details of how multiple microservices interact.
+Or it might be at low levels, such as a particular data algorithm that is critical to your business.
+This fuzziness makes it hard to be exact on what architecture is, but if you ask the senior technical people on the project,
+they will definitely have an answer.</p>
+<p>However, if that knowledge of the important stuff isn&#39;t shared across the team members,
+then the intended architecture becomes hidden over time and is in danger of being supplanted.
+If the majority of the developers believe that something else is more important, that becomes the de-facto architecture.
+Or worse, if there is no common understanding then things devolve into anarchy and the system becomes a tangled mess.</p>
+<p>A common understanding of how things work could come from clean code, documentation, or other types of communication.
+It can be difficult to keep system understanding all in your head,
+so this explains why architecture diagrams and other documents are so often created to share understanding across team members.</p>
+<p>If we combine the definitions and say that software architecture is &quot;a common understanding of how the important stuff works,&quot;
+then it follows that the architecture impacts every developer (and likely others as well, such as operations and security)
+and they impact it in return.
+So are all developers architects then?
+Not necessarily.</p>
+<h2 id="the-role-of-an-architect">The Role of an Architect</h2>
+<p>Given the above definition, an architect needs to be someone who can correctly identify the important stuff,
+be able to explain it, and evangelize it.
+Technical skills are critical, but not sufficient.
+An architect&#39;s role includes understanding business value, systems thinking &amp; design, and communication.</p>
+<h3 id="business-value">Business Value</h3>
+<p>The elegance or creativity of an architecture is irrelevant if it does not enable value.
+In the context of a company, does the architecture help the company meet its goals?
+Does it keep costs down and enable the changes that drive revenue?
+In the context of an open-source project, does the architecture enable the software to be able to meet its goals?
+An architect needs to be engaged with the business to be able to understand these goals.</p>
+<p><a href="https://martinfowler.com/articles/architect-elevator.html">Gregor Hohpe writes</a> that
+&quot;architecture is rarely good or bad - it&#39;s either fit or unfit for purpose.&quot;
+He posits that an architect needs to be interacting with leadership and presenting architecture as &quot;selling options.&quot;
+How will the architecture (especially at a high level) be good for the business?
+Or are the technologists just doing what they think is neat or blindly following after the strategy of other companies?
+The article also says, &quot;Companies should invest more in architecture that allows them to defer decisions.&quot;</p>
+<p>At Pluralsight, our architects have taken &quot;a principled approach to architecture.&quot;
+This approach starts with identifying strategic goals such as delivering amazing experiences quickly, being data-driven, and security.
+Next, decide what principles support those goals, like cross-functional teams, cloud infrastructure, or small codebases.
+Then list what practices go along with those principles; things like continuous delivery, test-driven development, or minimizing coupling between teams.
+This approach helps you align your architectural goals to business value.</p>
+<h3 id="systems-thinking-design">Systems Thinking &amp; Design</h3>
+<p>An architect needs to be able to understand and design the important stuff.
+This is possibly the best-understood aspect of an architect&#39;s role.</p>
+<p>An architect should be able to describe the architecture and explain what the strengths and weaknesses are.
+This is important, because there is no one right answer for how something should work.
+There are always tradeoffs, and the architect needs to be able to explain why decisions were made
+and which qualities were selected for.</p>
+<p>As systems grow, they become more complex and new behaviors can emerge.
+Architects need to have systems thinking skills that allow them to predict and plan for change.
+Is the architecture flexible, making it easy to continue to grow and change?
+Or is it rigid and prone to slow the business down?</p>
+<h3 id="communication">Communication</h3>
+<p>Going back to the aspect of a &quot;common understanding&quot; being part of architecture,
+it&#39;s critical that an architect is able to help others understand the important parts
+as well as the reasons behind them.</p>
+<p>The bigger a development organization gets, the harder and more important this job gets.
+If teams are not aligned to the architecture, then they are likely to deviate from the course and introduce new complexities.
+One of the best ways to help teams stay aligned is for the architect to spend time coding with them and coaching them.
+Instead of handing down instructions like commandments from on high,
+the architect should be open to collaboration and ideas from those who are closest to the problems.</p>
+<p>In an <a href="https://martinfowler.com/articles/ea-in-lean-enterprise.html">article about architects in Enterprise organizations</a>
+Kevin Hickey says that when you&#39;re working across multiple teams,
+&quot;Your role is no longer to make choices, but to help others make the right choice and then radiate that information.&quot;
+I don&#39;t believe that means an architect is not responsible for making <em>any</em> choices,
+but that their choices should generally be at higher levels of abstraction (outside a team&#39;s area of work)
+and that they should not be imposing on teams.
+Let the teams do their job and shoulder their own responsibility for it.
+Instead, the architect job is about influence.
+It&#39;s about promoting a vision, building bridges, and facilitating education.</p>
+<p>A sign that an architect has done their job well is that teams understand how they fit into the big picture,
+and they can do their work independently without negatively impacting the system.</p>
+<p>At Pluralsight, one of the ways we facilitate a common understanding is through a weekly &quot;Architecture Guild&quot; meeting.
+Anyone is welcome to attend and we encourage every team to send at least one representative.
+During the meeting we have presentations and discuss issues relating to the greater system for the development and ops teams.</p>
+<h2 id="architecture-affects-everyone">Architecture Affects Everyone</h2>
+<p>Given that we&#39;ve defined architecture in terms of understanding the important aspects of a system,
+then the architect role is indeed a key role for a software organization.
+Without that role we leave ourselves open to risks of not meeting business needs or having people pull in opposing directions.</p>
+<p>That doesn&#39;t necessarily mean that there has to be somebody with the title of Architect, but someone should be filling that role.
+Many of the good developers I know definitely share some of the skills of an architect.
+In some cases, I&#39;d argue that they <em>are</em> architects, though usually for a subsystem,
+like in the case of Pluralsight&#39;s <a href="https://www.pluralsight.com/tech-blog/system-architecture-bounded-contexts">bounded contexts</a>.
+It&#39;s OK (preferable even) to have architects at different levels of abstraction.</p>
+<p>Every system has an architecture, whether it is intentional or not.
+If you don&#39;t want yours to become a haphazard mess &mdash; or you want it to recover from being one &mdash;
+then you need good architects and people committed to driving that shared understanding forward.</p>
+
+    <hr>
+    <p>
+        <a href="/blog">Blog Index</a>
+        
+        <br/>Older: <a href="mob-programming">Mob Programming</a>
+    </p>
+</article>
+        </div>
+    </body>
+</html>
