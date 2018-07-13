@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <title>Allan Stewart - Avoiding Secondary Work</title>
+        <meta name="description" content="Allan Stewart's personal website">
+        <meta name="keywords" content="software craftsman professional developer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="/favicon.jpg">
+        <link rel="shortcut icon" sizes="144x144" href="/favicon144.jpg">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+    </head>
+    <body>
+        <nav>
+            <p><a href="/">ALLAN STEWART</a></p>
+<ul>
+    <li><a href="/blog/index">Blog</a></li>
+    <li><a href="/speaking">Speaking</a></li>
+</ul>
+        </nav>
+        <div id="content">
+            <article>
+    <h1 id="avoiding-secondary-work">Avoiding Secondary Work</h1>
+<p><em>Originally published on Jun 29, 2018 on the <a href="https://www.pluralsight.com/tech-blog/avoiding-secondary-work">Pluralsight Tech Blog</a></em></p>
+<p>An important lesson I&#39;ve learned at Pluralsight is that when we let ourselves get too busy we create additional work for ourselves.
+This additional work is a form of non-valuable meta-work which I refer to as <em>secondary work</em>.
+It gets in the way of doing the work that actually delivers value.</p>
+<p>Why do we let ourselves get so busy?
+Because we believe that if we are not busy then we must be wasting time and money.
+Software developers are an expensive lot, so they should be kept busy to get a good ROI on their salaries, right?
+Focusing on keeping people busy is known as <em>resource efficiency</em>.
+This type of thinking is ingrained into western industrial culture.</p>
+<p>Let&#39;s look at two examples where software development teams tend to generate secondary work for themselves.</p>
+<h2 id="backlogs">Backlogs</h2>
+<p>How many things are you tracking in your work backlog?
+Having a list of next things to do can be important; when you finish one thing you can smoothly transition to the next.
+But if you have too many things in your backlog it will inevitably generate a new type work that does not generate value: managing the list.</p>
+<p>It doesn&#39;t take very many items in a backlog to generate a lot of meta-work.
+It is not uncommon to find teams in <em>backlog grooming</em> meetings where they are prioritizing the list,
+trying to remember what old items were all about, making updates, breaking out tasks, estimating work, and so on.
+Sadly, much of this work ends up being pure waste because we never end up writing the code to deliver those features.</p>
+<div class="blog-image">
+<img src="../img/big-backlog.png" alt="image of a big backlog">
+<br/>
+<em>How much secondary work will this backlog generate?</em>
+</div>
+
+<p>We should reduce this waste and recover time to do <em>real</em> work &mdash; the work that actually adds value.
+Some teams try to mitigate the effect of a long backlog by timeboxing work on it or only focusing on the most important items.
+But these measures only address the symptoms of the problem rather than the real cause: the backlog is just too big.</p>
+<p>The solution is to limit your backlog inventory.
+Small lists are easy to manage and don&#39;t waste much time.
+So pick a small number of items to keep and <strong>delete</strong> the rest.
+As you finish work you&#39;ll free up space on the backlog to add new items.
+If something more important comes up then it will displace other work and the lowest priority item gets deleted.</p>
+<p>Don&#39;t worry that you&#39;ll forget items on the list.
+That&#39;s actually the goal!
+If something is important enough, it will resurface again and again until you do it.
+If it is not important, then why worry about it?</p>
+<h2 id="too-much-work-in-progress">Too Much Work In Progress</h2>
+<p>So, you just finished writing some code but your teammate can&#39;t do the code review because they are busy with something else.
+Or maybe you are stuck on a problem and need some help, but the person you need is in a meeting.
+What do you do?</p>
+<p>Most developers will start working on the next available task.
+It <em>feels</em> like the right thing to do, especially since you don&#39;t want your manager to see you sitting idle.
+But now you are busy, which hurts your availability when someone needs <em>you</em> to do something for them or when your teammate returns to help you.</p>
+<p>Left unchecked, this mentality leads to building up queues of work between members of your team.
+As the amount of work in flight grows, teams start generating secondary work to keep track of everything.
+Communication becomes more difficult, so more work is added for tracking and reporting status.
+Processes are created to manage code branching, merging, and reviews.
+CI tooling may be extended to run on multiple branches.</p>
+<p>All this secondary work compounds the original problem of being busy.
+Plus you are slowed down by additional context switching.
+Your rate of delivering value slows.</p>
+<p><a name="reference_1"></a>
+To avoid this problem, you need to put a cap on how much work can be in progress at any given time.
+These are called work-in-progress (WIP) limits<sup><a href="#footnote_1">1</a></sup>.
+When a developer finishes a task and cannot start on a new one, they are forced to wait.
+Then they are available when someone needs help or a code review.
+Work gets done faster as you focus on finishing work instead of starting new work.</p>
+<div class="blog-image">
+<img src="../img/backlog-with-wip-limits.png" alt="image of a backlog with WIP limits">
+<br/>
+<em>WIP limits prevent the accumulation of secondary work.</em>
+</div>
+
+<p>Although taking a short break can be very beneficial,
+this doesn&#39;t necessarily mean that developers should sit idle while they wait.
+It just means they shouldn&#39;t start more team-level work.
+They could sit down and pair with another developer so that work gets done sooner.
+Or learn something new.
+Or they might work on some low-priority thing that they can drop at a moment&#39;s notice.</p>
+<h2 id="lean">Lean</h2>
+<p>Resource efficiency is all about staying busy.
+When we make this a priority, we will always begin to encounter secondary work.
+So is there something else we should focus on instead?</p>
+<p>There is. We can focus on delivering value quickly by finishing work instead of starting it.
+When we focus on this instead of being busy, we discover that slowing down can make us fast.</p>
+<p><a name="reference_2"></a>
+Focusing on getting work done is called <em>flow efficiency</em>.
+The study of <em>Lean</em><sup><a href="#footnote_2">2</a></sup> teaches us about the relationship between flow and resource efficiency.
+Both are important, but Lean explains how focusing on flow helps us get more work done faster, even if it means we aren&#39;t keeping people busy all the time!</p>
+<p>This is one of the reasons that pair and mob programming practices are so effective.
+We know that typing a lot of code as fast as we can is not the way to get quality code (in fact, that&#39;s how you make a huge mess), so we should stop acting as if putting our hands on the keyboard indicates that we are working hard!
+And how often have you spent a long time coding only to get your best ideas after you left work?
+Having slack time encourages innovation and reduces burnout.</p>
+<p>Measuring software development productivity is problematic at best.
+Comparing teams is futile.
+But anecdotally, I&#39;ve seen first hand how effective the Lean philosophy can be.
+At a prior job, I worked on a team that regularly spent 5 to 8 hours a week just managing our backlog and coordinating work
+&mdash; nearly a whole day worth of secondary work!
+Then when I joined Pluralsight, my team applied these concepts and only spent 1 to 2 hours a week on the same things.</p>
+<p>So choose to be less busy!
+Avoid or eliminate secondary work.</p>
+<hr>
+<div class="footnotes">
+<ol>
+    <a name="footnote_1"></a>
+    <li>
+        WIP can also be called work-in-process.
+        Most of the time, the two terms &quot;process&quot; and &quot;progress&quot; can be used interchangeably,
+        but in a few cases (especially relating to finance) there can be important differences. <a href="#reference_1">↩</a>
+    </li>
+    <a name="footnote_2"></a>
+    <li>
+        If you want to learn more about Lean, I highly recommend the book <a href="https://thisislean.com/"><em>This is Lean</em></a> by Niklas Modig &amp; Pär Åhlström.
+        Rather than trying to map Lean practices from other industries over to software development,
+        it focuses on core principles which are broadly applicable. <a href="#reference_2">↩</a>
+    </li>
+</ol>
+</div>
+
+    <hr>
+    <p>
+        <a href="/blog">Blog Index</a>
+        
+        <br/>Older: <a href="delete-code">Reducing Risk by Deleting Code</a>
+    </p>
+</article>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <title>Allan Stewart - Leaning into Eventual Consistency</title>
+        <meta name="description" content="Allan Stewart's personal website">
+        <meta name="keywords" content="software craftsman professional developer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="/favicon.jpg">
+        <link rel="shortcut icon" sizes="144x144" href="/favicon144.jpg">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+    </head>
+    <body>
+        <nav>
+            <p><a href="/">ALLAN STEWART</a></p>
+<ul>
+    <li><a href="/blog/index">Blog</a></li>
+    <li><a href="/speaking">Speaking</a></li>
+</ul>
+        </nav>
+        <div id="content">
+            <article>
+    <h1 id="leaning-into-eventual-consistency">Leaning into Eventual Consistency</h1>
+<p><em>Originally published on Feb 23, 2018 on the <a href="https://www.pluralsight.com/tech-blog/leaning-into-eventual-consistency">Pluralsight Tech Blog</a></em></p>
+<p>Distributed systems are hard.
+They have a lot of moving parts with complex interactions and are inherently multi-threaded.
+To make them work, there is often some form of eventual consistency at play.
+Embracing this can make software development easier.</p>
+<p>But to embrace it, you may have to first convince yourself that <em>many applications do not need strict consistency.</em>
+This is not the normal mindset of a software developer.
+When data is changing, we tend to think that our users are always getting the latest values. 
+In reality they get old data all the time due to latency!</p>
+<p>For an example, let&#39;s say a user is pulling up a webpage that shows how many &quot;likes&quot; she has on her content.
+Just before her request, the number of likes went from 100 to 101.
+The request hits the webserver and the code gets a number from the database.
+But then, before the value can be returned to the user&#39;s browser, some other &quot;like&quot; is registered and increments the value to 102.
+When the user sees her number of likes, it&#39;s already out of date.</p>
+<p>When we use an ACID database (e.g. a SQL relational database), the user will get 101 back and we tend to say, &quot;That&#39;s fine, because that was the value when the query occurred.&quot;
+But if we use a BASE database (such as Cassandra), it&#39;s possible that they could get a value of 100 back.
+This often makes developers uncomfortable, but in reality, there are many cases where that is good enough.</p>
+<h2 id="how-good-is-good-enough-">How Good is Good Enough?</h2>
+<p>Eventually consistent systems do not yield random data.
+All of the values you can get back were valid at some point in time.
+So the key to determining what is &quot;good enough&quot; lies in determining how time sensitive each piece of data is.
+Or put another way, how long are you willing to wait for a value to be consistent?</p>
+<p>In the example above, the number of likes for a user is data that can probably tolerate variance on the order of seconds, if not minutes.
+Even if a post is very popular, the user will be happy to see the numbers trending up despite getting data that is a little bit stale.
+In contrast, when users post content they expect it to be displayed immediately on the page, so the tolerance there is shorter &mdash; on the order of milliseconds.</p>
+<p>Some eventually consistent systems are able to work within these tight timeframes.
+Here at Pluralsight, we have used Cassandra for some things that would normally be done in a relational database.
+Dealing with Cassandra has changed how we do some of these operations, but it has been worth it for higher availability.</p>
+<p>Eventual consistency doesn&#39;t have to mean slow.
+It does mean that you need to understand the difference between the mean case and the upper percentiles.
+Determine the window of time that matters for your application and then act accordingly.</p>
+<h2 id="benefit-from-eventual-consistency">Benefit from Eventual Consistency</h2>
+<p>Once you&#39;ve discovered the acceptable tolerances, then you can take advantage of it and start making decisions in your code that can make development easier.
+The increased availability that comes along with most eventually consistent systems can help your uptime.
+Complicated synchronous code can often be replaced by simpler asynchronous code.</p>
+<p>For example, take a request for data where the server needs to call some other API to refresh a stale cache of data.
+Instead of complicated code which has to deal with waiting for the API call and handling failures gracefully,
+you could opt to just return the stale data and kick off a separate asynchronous task to call the API.
+(This is basically the idea of <a href="https://www.pluralsight.com/tech-blog/eventually-consistent-patterns-out-of-band-healing">out of band healing</a> which Matt posted about.)
+If there are multiple APIs to consult or complicated processing logic, then the benefit increases dramatically.</p>
+<p>Another example is to use <a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing">event sourcing</a> to correct out-of-order transactions.
+Users may be able to see data as it is received, but important calculations might be deferred to longer time spans.
+Credits and debits on an account might be shown as they are received, but negative balance penalties don&#39;t execute until enough time has passed that we are confident that there isn&#39;t a missing credit transaction.</p>
+<p>Adding some eventual consistency might even be as simple as using an eventually consistent component, like a database or message broker.</p>
+<h2 id="use-wisely">Use Wisely</h2>
+<p>As with all things in software development, leaning into eventual consistency is an exercise in tradeoffs.
+Some things become easier, but other things become more difficult.
+Making individual pieces of code simpler can be a huge win, but you&#39;re trading that for complexity in understanding the whole system.
+Using a highly available database can give you great uptime, but can cause the development against that database to suffer.
+Optimize for the system rather than a single team or service.</p>
+<p>This is why I like the phrasing of <em>leaning</em> into the eventual consistency.
+Ideally you find places where it is already present in your system and leverage it.
+Here at Pluralsight, we&#39;ve found that strategically adopting eventual consistency can yield faster development of simpler pieces.
+Working together, those simple, well-tested pieces combine to do complex things.</p>
+
+    <hr>
+    <p>
+        <a href="/blog">Blog Index</a>
+        <br/>Newer: <a href="delete-code">Reducing Risk by Deleting Code</a>
+        <br/>Older: <a href="forms-of-temporal-coupling">Forms of Temporal Coupling</a>
+    </p>
+</article>
+        </div>
+    </body>
+</html>

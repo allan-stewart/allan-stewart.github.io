@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <title>Allan Stewart - Reducing Risk by Deleting Code</title>
+        <meta name="description" content="Allan Stewart's personal website">
+        <meta name="keywords" content="software craftsman professional developer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="/favicon.jpg">
+        <link rel="shortcut icon" sizes="144x144" href="/favicon144.jpg">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+    </head>
+    <body>
+        <nav>
+            <p><a href="/">ALLAN STEWART</a></p>
+<ul>
+    <li><a href="/blog/index">Blog</a></li>
+    <li><a href="/speaking">Speaking</a></li>
+</ul>
+        </nav>
+        <div id="content">
+            <article>
+    <h1 id="reducing-risk-by-deleting-code">Reducing Risk by Deleting Code</h1>
+<p><em>Originally published on Apr 20, 2018 on the <a href="https://www.pluralsight.com/tech-blog/delete-code">Pluralsight Tech Blog</a></em></p>
+<p>One of my favorite activities as a software professional is to delete code.
+Over time, I&#39;ve learned that this is one of the best things I can do because the ideal amount of code is <em>no code at all</em>.</p>
+<p>If you can deliver value without writing any code, you avoid the development and maintenance costs.
+And there won&#39;t be any software bugs!
+<a name="reference_1"></a>
+A fantastic example of this comes from Pragmatic Dave Thomas<sup><a href="#footnote_1">1</a></sup>.
+A company was having problems with their mail not getting to the right departments.
+They wanted a complex OCR system for routing their mail, but he suggested they could just use colored envelopes instead.
+No code was needed and the company saved a lot of money.</p>
+<h2 id="code-is-a-liability">Code is a Liability</h2>
+<p>Of course, we do need some code because software can deliver incredible value.
+But that value comes from what the code does or enables.
+Code isn&#39;t intrinsically valuable.
+Rather it is a liability.</p>
+<p>Once you have code, the developers need to understand it.
+It needs to be updated when requirements change.
+It may have bugs.
+These things bring risk and can slow a software business down.
+Even the most perfect code can become problematic when the world changes around it.
+Changes to languages, frameworks, paradigms, or operating systems can add a burden to otherwise good code.</p>
+<p>Since we need code, we need to manage the risk.
+I have found that the two biggest things software developers can do are:</p>
+<ol>
+<li>improve code quality</li>
+<li>manage the size of the codebase</li>
+</ol>
+<p>Code quality and the codebase size are highly correlated.
+Having too much code lowers software quality as it becomes harder to understand and manage the sheer size.
+You literally have to pay for your excess.
+On the other hand, quality also suffers if you have too little code.
+Either there isn&#39;t enough code to deliver the needed value or the code becomes needlessly difficult to read and maintain.</p>
+<p>The right amount of code is an optimization problem.
+Generally speaking, you want your codebase to be small relative to the feature value you provide, but not so small that you start violating good design principles.</p>
+<div class="blog-image">
+<img src="/img/risk-vs-size.png" alt="risk versus size">
+</div>
+
+<h2 id="delete-code">Delete Code</h2>
+<p>In most codebases there is a lot of room to improve quality and reduce risk by deleting code.
+You have to be disciplined in how you delete though.
+It&#39;s important to preserve the value that the software is delivering.
+<a name="reference_2"></a>
+Luckily there is a well-known technique to help with this<sup><a href="#footnote_2">2</a></sup>:</p>
+<blockquote>
+<p>Refactoring (noun): a change made to the internal structure of software to make it easier to understand and cheaper to modify without changing its observable behavior.</p>
+</blockquote>
+<p>Code refactoring should be used to keep your quality high and size small.
+It can be done while writing code (I prefer to do it continuously as an integral part of the Test Driven Development loop) or it can be done to improve existing code.</p>
+<p>Unfortunately, not all code provides value.
+Some features just aren&#39;t used enough in the software to justify their existence.
+They should be deleted.
+Worse still, &quot;dead&quot; code lurks in many codebases, distracting and confusing developers while never being executed.</p>
+<h2 id="lean-and-mean">Lean and Mean</h2>
+<p>Lean software development recognizes that code is a form of inventory, and therefore potential waste.
+So slim down!
+Get rid of the excess!
+Like an exercise regimen, it won&#39;t be easy but the results speak for themselves.</p>
+<p>I particularly like this quote on the subject from <a href="http://michaelfeathers.typepad.com/michael_feathers_blog/2011/05/the-carrying-cost-of-code-taking-lean-seriously.html">Michael Feathers</a>:</p>
+<blockquote>
+<p>I think that the future belongs to organizations that learn how to strategically <strong>delete</strong> code.
+Many companies are getting better at cutting unprofitable features in their products, but the next step is to pull those features out by the root: the code.
+Carrying costs are larger than we think.
+There&#39;s competitive advantage for companies that recognize this.</p>
+</blockquote>
+<p>Refactor code to maximize the good and reduce the bad.
+Mercilessly delete code that isn&#39;t providing value!</p>
+<hr>
+<div class="footnotes">
+<ol>
+    <a name="footnote_1"></a>
+    <li>
+        I heard this story related by Neal Ford on the <a href="http://www.se-radio.net/2017/04/se-radio-episode-287-success-skills-for-architects-with-neil-ford/">SE-Radio podcast</a> (32 minutes in). <a href="#reference_1">↩</a>
+    </li>
+    <a name="footnote_2"></a>
+    <li>
+        This definition of the term &quot;refactoring&quot; comes from <a href="https://martinfowler.com/bliki/DefinitionOfRefactoring.html">Martin Fowler&#39;s bliki</a>. He literally wrote the book on it. <a href="#reference_2">↩</a>
+    </li>
+</ol>
+</div>
+
+    <hr>
+    <p>
+        <a href="/blog">Blog Index</a>
+        <br/>Newer: <a href="avoiding-secondary-work">Avoiding Secondary Work</a>
+        <br/>Older: <a href="leaning-into-eventual-consistency">Leaning into Eventual Consistency</a>
+    </p>
+</article>
+        </div>
+    </body>
+</html>
