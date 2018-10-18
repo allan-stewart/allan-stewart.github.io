@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <title>Allan Stewart - Tightening Feedback Loops</title>
+        <meta name="description" content="Allan Stewart's personal website">
+        <meta name="keywords" content="software craftsman professional developer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="/favicon.jpg">
+        <link rel="shortcut icon" sizes="144x144" href="/favicon144.jpg">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+    </head>
+    <body>
+        <nav>
+            <p><a href="/">ALLAN STEWART</a></p>
+<ul>
+    <li><a href="/blog/index">Blog</a></li>
+    <li><a href="/speaking">Speaking</a></li>
+</ul>
+        </nav>
+        <div id="content">
+            <article>
+    <h1 id="tightening-feedback-loops">Tightening Feedback Loops</h1>
+<p>Feedback is the information we get back from the world in response to doing something.
+Without feedback, there is no way to know whether we are accomplishing our goals.</p>
+<p>In software development, there are many opportunities to use feedback to improve. Perhaps the most obvious one is getting feedback from our users, but there are many others that come before we can get our software in front of customers.</p>
+<div class="blog-image">
+<img src="../img/feedback_loops.png" alt="feedback loops">
+</div>
+
+<p>Our designs get feedback from the limitations we encounter when writing the code.
+We get feedback on merging our code when there are conflicts (or the lack thereof).
+Test results give us feedback, as do code reviews.
+Then when we deploy to production, we get feedback in the form of customer usage and bug reports.</p>
+<p>Each of these feedback loops teaches us something that we can use to adapt and improve.</p>
+<h2 id="faster-feedback">Faster Feedback</h2>
+<p>Unfortunately, there is always delay between doing something and getting feedback.
+The longer the lag, the slower we can react.
+But worse, long delays also mean that we spend more time on bad assumptions.
+Here are some examples:</p>
+<ul>
+<li>a lot of design work goes into an idea which is technically infeasible</li>
+<li>changes are made on a code branch only to find that the master branch changed significantly, rendering that work obsolete</li>
+<li>a developer does something they didn&#39;t know they shouldn&#39;t, then has to rewrite code after the problem is found in code review</li>
+<li>a bug was shipped to production which isn&#39;t found for months, but then it turns out that some customers rely on the unintended behavior</li>
+<li>the new feature we created doesn&#39;t actually get used by customers</li>
+</ul>
+<p>To avoid these problems we must to tighten our feedback loops to be as fast as possible.</p>
+<p>Some feedback loops can be tightened through technical means.
+We can use newer computers to compile code more quickly.
+We can make our unit tests faster.
+We can set up continuous integration servers to automatically run our tests.
+These are important, but only get us so far.
+Most of the delay in software development projects is due to the way humans choose to work.</p>
+<h2 id="changing-processes-and-practices">Changing Processes and Practices</h2>
+<p>It can be very challenging to alter how a team works.
+The more people impacted, the harder it is to affect change.
+But these changes can also have massive benefits.
+Let&#39;s look at some ways we can tighten feedback loops by changing how we work.</p>
+<h3 id="cross-functional-teams">Cross-functional Teams</h3>
+<p>When teams are divided up by specialty, work on any given project must compete with other priorities as it crosses teams.
+This delays feedback.
+For example, if a developer finished coding up a feature, they may have to wait for a tester to be available to verify it.
+And then there is another wait for the operations team to deploy to production.
+These delays are made worse by the churn of context switching &mdash; it is rare that every team is already on top of the details of every project.</p>
+<p>Cross-functional teams do not have to deal with the communication and prioritization overhead of working across multiple teams.
+Feedback comes more quickly because the team members work regularly with each other.
+There is less churn and the people whose feedback you need are involved a lot earlier in the process.</p>
+<p>This is one reason why we see Agile and DevOps cultural shifts toward having people of different disciplines work together.
+(In fact, improving feedback is <a href="https://itrevolution.com/the-three-ways-principles-underpinning-devops/">the Second Way</a> of DevOps.)</p>
+<h3 id="test-driven-development">Test-Driven Development</h3>
+<p>Have you ever worked on code for a while without executing it, and then when you do finally run it you are surprised if it works the first time?</p>
+<p>I used to work that way.
+I only ran my code when I ran the whole application, and doing that was slow.
+So I&#39;d write a lot of code, then deal with the syntax errors, bugs, and other problems later.</p>
+<p>One of the big benefits of test-driven development (TDD) is that you run your code often.
+Rather than running the whole application, you&#39;re running smaller chunks in test suites designed to be fast.
+The constant running of the tests provides feedback on the state of your code.
+Not only do you learn whether it compiles and runs correctly, but you also know how long it has been since it was last working!
+When an unexpected failure occurs, you can narrow the problem down to your latest changes.</p>
+<p>For me, this fast feedback and the design benefits of TDD are the real reasons for the practice.
+Having a full test suite with high code coverage is just a nice side effect.</p>
+<h3 id="continuous-integration">Continuous Integration</h3>
+<p><a href="https://martinfowler.com/articles/continuousIntegration.html">Continuous integration</a> (CI) is all about the feedback you get when you merge code from different developers to see how it all works together.
+It is done all the time (continuously!) because putting it off makes the feedback loop long and the merges become much more painful.</p>
+<p>Although you can practice CI without a server (by practicing <a href="https://trunkbaseddevelopment.com/">trunk-based development</a> for example), there is a lot of benefit to setting up a CI server to automate the work of building and testing the integrated codebase.
+This makes the feedback faster and more reliable.</p>
+<h3 id="pair-mob-programming">Pair &amp; Mob Programming</h3>
+<p>Collaborative coding is a powerful way to tighten feedback loops.
+By having people work together, the feedback they give each other is immediate and easily applied.
+Pair programming can significantly improve <a href="https://www.pluralsight.com/tech-blog/continuous-code-reviews">code reviews</a>,
+and <a href="https://www.pluralsight.com/tech-blog/mob-programming">mob programming</a> can eliminate that step completely!</p>
+<p>Having less work in progress means that merge conflicts are less frequent and less painful.
+I worked on a mob programming team where merge conflicts only came up a couple times a year (and even then was usually a special case).</p>
+<p>But perhaps most important is knowing that you are working on the right thing.
+When you work alone, you might misunderstand the task.
+Working together usually pushes misunderstandings or disagreements into the open where they can be addressed.</p>
+<h3 id="deployment-pipelines">Deployment Pipelines</h3>
+<p>Automating deployments makes them fast and less error-prone.
+Then you can get your code and features into testing and production environments where you can get different types of feedback.
+Push-button deployments are fantastic.
+Some teams go as far as to do continuous deployments.</p>
+<p>Decoupling your deployments from your releases means that you can deploy more often, and in turn get feedback more often.
+Feature toggles are a great way to try things in production on a small group of users, then roll it out to more users gradually based on the results.</p>
+<h3 id="small-batch-sizes">Small Batch Sizes</h3>
+<p>My last suggestion for tightening feedback loops is to work in small increments.
+Make your tasks or user stories small; ideally in vertical slices where each story delivers some value.
+(Avoid horizontal slices like &quot;create the database schema&quot; because those don&#39;t deliver value by themselves.)
+Then get those small slices into production.</p>
+<p>The more time your team spends working on an idea without shipping to production, the longer your feedback cycle becomes.
+Without customer feedback, you&#39;re just guessing whether they want the new features and you are more likely to fall for sunk-cost arguments.
+Unfortunately, many teams make their &quot;minimal viable product&quot; too large and won&#39;t ship anything until everything is complete.</p>
+<p>Customer interviews and other techniques are great for vetting ideas.
+But they are also susceptible to problems like selection bias and small sample sizes.
+Instead of waiting for a complete feature set to be finished, consider delivering pieces of functionality out to users sooner.
+Then use their feedback to guide your work.</p>
+<p>Another benefit of small batch sizes is that the work gets done faster.
+It&#39;s less code to write, so it&#39;s easier to merge and code review.
+There are fewer tests to write and make pass.
+Each step is easier and there is less noise in your feedback.</p>
+<h2 id="tighten-your-feedback-loops">Tighten Your Feedback Loops</h2>
+<p>Think about where you get feedback from.
+What changes could you make to get the most valuable feedback more often?
+What would it be worth &mdash; both financially and for team morale?</p>
+<p>Getting feedback is important.
+The faster you get it, the more quickly you can adapt to change.
+You also avoid wasting time and effort on things you don&#39;t need to be doing.
+The most effective ways I&#39;ve found to speed up feedback are to improve the human parts of the software development process.</p>
+
+    <hr>
+    <p>
+        <a href="/blog">Blog Index</a>
+        
+        <br/>Older: <a href="avoiding-secondary-work">Avoiding Secondary Work</a>
+    </p>
+</article>
+        </div>
+    </body>
+</html>
