@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Allan Stewart's Blog</title>
+        <description>Allan Stewart's Blog RSS Feed</description>
+        <link>http://allan-stewart.github.io/blog/rss.xml</link>
+        <atom:link href="http://allan-stewart.github.io/blog/rss.xml" rel="self" type="application/rss+xml" />
+        <item>
+            <title>Tightening Feedback Loops</title>
+            <link>http://allan-stewart.github.io/blog/tightening-feedback-loops</link>
+            <description>Feedback is the information we get back from the world in response to doing something. Without feedback, there is no way to know whether we are accomplishing our goals.</description>
+            <pubDate>Fri, 12 Oct 2018 00:00:00 +0000</pubDate>
+            <guid>http://allan-stewart.github.io/blog/tightening-feedback-loops</guid>
+        </item>
+        <item>
+            <title>Avoiding Secondary Work</title>
+            <link>http://allan-stewart.github.io/blog/avoiding-secondary-work</link>
+            <description>An important lesson I've learned at Pluralsight is that when we let ourselves get too busy we create additional work for ourselves. This additional work is a form of non-valuable meta-work which I refer to as _secondary work._ It gets in the way of doing the work that actually delivers value.</description>
+            <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
+            <guid>http://allan-stewart.github.io/blog/avoiding-secondary-work</guid>
+        </item>
+        <item>
+            <title>Reducing Risk by Deleting Code</title>
+            <link>http://allan-stewart.github.io/blog/delete-code</link>
+            <description>One of my favorite activities as a software professional is to delete code. Over time, I've learned that this is one of the best things I can do because the ideal amount of code is _no code at all._</description>
+            <pubDate>Fri, 20 Apr 2018 00:00:00 +0000</pubDate>
+            <guid>http://allan-stewart.github.io/blog/delete-code</guid>
+        </item>
+        <item>
+            <title>Leaning into Eventual Consistency</title>
+            <link>http://allan-stewart.github.io/blog/leaning-into-eventual-consistency</link>
+            <description>Distributed systems are hard. They have a lot of moving parts with complex interactions and are inherently multi-threaded. To make them work, there is often some form of eventual consistency at play. Embracing this can make software development easier.</description>
+            <pubDate>Fri, 23 Feb 2018 00:00:00 +0000</pubDate>
+            <guid>http://allan-stewart.github.io/blog/leaning-into-eventual-consistency</guid>
+        </item>
+        <item>
+            <title>Forms of Temporal Coupling</title>
+            <link>http://allan-stewart.github.io/blog/forms-of-temporal-coupling</link>
+            <description>Coupling is an important concept in software development because it limits the ability of software to change. Temporal coupling is a kind of coupling where code is dependent on time in some way. It is particularly insidious because it is hard to detect unless you know what you are looking for.</description>
+            <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+            <guid>http://allan-stewart.github.io/blog/forms-of-temporal-coupling</guid>
+        </item>
+        <item>
+            <title>Architecture and Architects</title>
+            <link>http://allan-stewart.github.io/blog/architecture-and-architects</link>
+            <description>The software industry has always held a basic assumption that architecture is important. By association, the role of architect has always been esteemed important. But unfortunately, it isn't always clear what architecture is or what an architect's job should be.</description>
+            <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
+            <guid>http://allan-stewart.github.io/blog/architecture-and-architects</guid>
+        </item>
+        <item>
+            <title>Mob Programming</title>
+            <link>http://allan-stewart.github.io/blog/mob-programming</link>
+            <description>When I joined Pluralsight, I knew going in that it was going to be a different kind of company. They were already practicing things that I'd been learning about and struggling to implement in my prior company, like TDD and continuous delivery. But I didn't realize just how different my day-to-day work would be until I found that my team was doing something called _mob programming_.</description>
+            <pubDate>Fri, 02 Jun 2017 00:00:00 +0000</pubDate>
+            <guid>http://allan-stewart.github.io/blog/mob-programming</guid>
+        </item>
+        <item>
+            <title>Continuous Code Reviews</title>
+            <link>http://allan-stewart.github.io/blog/continuous-code-reviews</link>
+            <description>Code reviews are generally accepted as good thing in software development. Some of the benefits include improving quality, sharing knowledge of a system, and promoting collective code ownership.</description>
+            <pubDate>Fri, 17 Mar 2017 00:00:00 +0000</pubDate>
+            <guid>http://allan-stewart.github.io/blog/continuous-code-reviews</guid>
+        </item>
+    </channel>
+</rss>
