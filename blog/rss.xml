@@ -6,6 +6,20 @@
         <link>http://allan-stewart.github.io/blog/rss.xml</link>
         <atom:link href="http://allan-stewart.github.io/blog/rss.xml" rel="self" type="application/rss+xml" />
         <item>
+            <title>No Perfect Architecture</title>
+            <link>http://allan-stewart.github.io/blog/no-perfect-architecture</link>
+            <description>What sort of software architecture should you be implementing? When looking at industry trends, blogs, conference talks, and the like, it is easy to think that other companies have everything figured out. You'd be forgiven for wanting to copy the success that others are having. But there is no perfect architecture. Everything is a set of tradeoffs; there are only good and bad fits for a context.</description>
+            <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+            <guid>http://allan-stewart.github.io/blog/no-perfect-architecture</guid>
+        </item>
+        <item>
+            <title>Testing HTTP Calls</title>
+            <link>http://allan-stewart.github.io/blog/testing-http-calls</link>
+            <description>Making HTTP calls to get resources or call APIs is a staple of software development. But if you do not properly abstract the request construction and response handling from the HTTP library that you use, it can be extremely difficult to test.</description>
+            <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
+            <guid>http://allan-stewart.github.io/blog/testing-http-calls</guid>
+        </item>
+        <item>
             <title>Managing Technical Debt</title>
             <link>http://allan-stewart.github.io/blog/managing-technical-debt</link>
             <description>Technical debt is a widely known metaphor which helps us think about how technical issues hurt our ability to deliver business value via software systems. But knowing the concept is different from actually managing technical debt. Unfortunately, many software teams know that they have technical debt, but don't know what do to about it.</description>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <title>Allan Stewart - No Perfect Architecture</title>
+        <meta name="description" content="Allan Stewart's personal website">
+        <meta name="keywords" content="software craftsman professional developer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="/favicon.jpg">
+        <link rel="shortcut icon" sizes="144x144" href="/favicon144.jpg">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="alternate" type="application/rss+xml" href="http://allan-stewart.github.io/blog/rss.xml" />
+        <link rel="canonical" href="https://www.pluralsight.com/tech-blog/no-perfect-architecture">
+    </head>
+    <body>
+        <nav>
+            <p><a href="/">ALLAN STEWART</a></p>
+<ul>
+    <li><a href="/blog/index">Blog</a></li>
+    <li><a href="/speaking">Speaking</a></li>
+</ul>
+        </nav>
+        <div id="content">
+            <article>
+    <h1 id="no-perfect-architecture">No Perfect Architecture</h1>
+<p><em>Originally published on Mar 1, 2019 on the <a href="https://www.pluralsight.com/tech-blog/no-perfect-architecture">Pluralsight Tech Blog</a></em></p>
+<p>What sort of software architecture should you be implementing?
+When looking at industry trends, blogs, conference talks, and the like, it is easy to think that other companies have everything figured out.
+You&#39;d be forgiven for wanting to copy the success that others are having.
+But there is no perfect architecture.
+Everything is a set of tradeoffs; there are only good and bad fits for a context.</p>
+<h2 id="context-matters">Context Matters</h2>
+<p>I often hear people argue for the adoption of a technology or practice on the basis that &quot;[insert successful company] does it.&quot;
+But you are not in the position of that other company.
+You have a different context with a different business model, scale, and a myriad other important differences.
+What they&#39;ve done was to solve their problems which are likely different from yours.
+If you&#39;re living in the arctic, don&#39;t trade in your warm coat for a swimsuit just because you heard some people in the tropics say it&#39;s &quot;best practice.&quot;</p>
+<p>There are some underlying problems that are common across the industry.
+Instead of copying the context-specific solution from somewhere else, you should dig into the underlying ideas and principles.</p>
+<p>For example, it seems like <em>everyone</em> is moving from monoliths to microservices these days.
+Before assuming that you also should adopt microservices, you need to understand what it would mean for you.
+Decentralization of data and governance, independent deployments, automation of infrastructure and deployment pipelines, and isolating failure are key principles behind microservices.
+Adoption shifts thinking from projects to products.
+Observation and monitoring become critical.
+Implementation details are encapsulated within services and teams.</p>
+<p>So you ought to consider the tradeoffs and ask yourself:</p>
+<ul>
+<li>Are we experiencing the kinds of problems that microservices solve?<ul>
+<li>Would the independent deployments allow your teams to move faster?</li>
+<li>Are you having problems scaling out?</li>
+</ul>
+</li>
+<li>What new problems will microservices <em>cause</em>?<ul>
+<li>Is your operations team ready and willing to automate infrastructure?</li>
+<li>Will your data get fragmented?</li>
+<li>What will happen when a key service goes down?</li>
+</ul>
+</li>
+<li>Does it align with our organizational structure or will it cause friction?<ul>
+<li>Do you have (or want) autonomous cross-functional teams?</li>
+<li>Do you have a transformational leader who will support the needed people-restructuring efforts?</li>
+</ul>
+</li>
+<li>Do our people value the cultures associated with microservices?<ul>
+<li>What do you believe about DevOps?</li>
+<li>Can you grant trust to teams to deploy to production at any time?</li>
+</ul>
+</li>
+<li>Is there another solution that fits better?</li>
+</ul>
+<p>There are a lot of great things about microservices.
+But it isn&#39;t a perfect architecture.
+Sometimes a monolith is better.</p>
+<h2 id="change-is-inevitable">Change Is Inevitable</h2>
+<p>The needs of an organization change over time.
+The problems your architecture solves today are likely not the same as those you will have tomorrow.
+As your business changes, your architecture will need to change as well.</p>
+<p>We recognize that the software industry changes rapidly.
+New technologies or cloud services may significantly change your strategy (such as mobile, serverless stacks, or managed databases).
+You may find you need to move to new languages, or adjust your architecture to accommodate a polyglot environment.
+Your company may be affected by market disruption and need to pivot.
+All of these can necessitate architectural evolution.</p>
+<p>One area of change that is typically ignored is how people change within an organization.
+<a href="https://en.wikipedia.org/wiki/Conway%27s_law">Conway&#39;s law</a> teaches us that these &quot;people issues&quot; are also architecture issues.
+Which key people join or leave you, management structure, skill levels, and even the number of people working together can significantly change your context.</p>
+<p>Here at Pluralsight, our growth has created a situation very different from when we started implementing our current <a href="https://www.pluralsight.com/tech-blog/system-architecture-bounded-contexts">bounded context architecture</a>.
+We&#39;ve had some technical issues to deal with, but the majority of our struggles have been related to the increased number of teams and associated shifts in communication patterns.
+Our system architecture has needed to adapt to these changes while keeping what&#39;s worked well thus far.</p>
+<p>Although our existing architecture was critical to the success of our growth, it was not perfect.</p>
+<h2 id="-it-depends-">&quot;It Depends&quot;</h2>
+<p>So then, what software architecture should you be implementing?
+The answer is, &quot;It depends.&quot;
+There is no single architecture that works well in all cases and at all times.
+You have to customize your architecture for your needs, applying the <a href="https://en.wikipedia.org/wiki/Architectural_pattern">patterns</a> that solve your problems and fit your situation best.</p>
+
+    <hr>
+    <p>
+        <a href="/blog">Blog Index</a>
+        
+        <br/>Older: <a href="testing-http-calls">Testing HTTP Calls</a>
+    </p>
+</article>
+        </div>
+    </body>
+</html>

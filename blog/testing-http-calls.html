@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <title>Allan Stewart - Testing HTTP Calls</title>
+        <meta name="description" content="Allan Stewart's personal website">
+        <meta name="keywords" content="software craftsman professional developer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="/favicon.jpg">
+        <link rel="shortcut icon" sizes="144x144" href="/favicon144.jpg">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="alternate" type="application/rss+xml" href="http://allan-stewart.github.io/blog/rss.xml" />
+        <link rel="canonical" href="https://www.pluralsight.com/tech-blog/testing-http-calls">
+    </head>
+    <body>
+        <nav>
+            <p><a href="/">ALLAN STEWART</a></p>
+<ul>
+    <li><a href="/blog/index">Blog</a></li>
+    <li><a href="/speaking">Speaking</a></li>
+</ul>
+        </nav>
+        <div id="content">
+            <article>
+    <h1 id="testing-http-calls">Testing HTTP Calls</h1>
+<p><em>Originally published on Jan 18, 2019 on the <a href="https://www.pluralsight.com/tech-blog/testing-http-calls">Pluralsight Tech Blog</a></em></p>
+<p>Making HTTP calls to get resources or call APIs is a staple of software development.
+But if you do not properly abstract the request construction and response handling from the HTTP library that you use, it can be extremely difficult to test.</p>
+<p>Here&#39;s an example of some HTTP-related code we might find in C#:</p>
+<pre><code class="lang-csharp">public User GetThatUserData(string userId)
+{
+    var httpClient = new HttpClient();
+    var url = $&quot;https://example.com/api/users/{userId}&quot;;
+    var response = httpClient.GetAsync(url).Result;
+    if (response.StatusCode != HttpStatusCode.OK)
+    {
+        throw new Exception($&quot;Unexpected status code: {response.StatusCode}&quot;);
+    }
+    var body = response.Content.ReadAsStringAsync().Result;
+    return JsonConvert.DeserializeObject&lt;User&gt;(body);
+}
+</code></pre>
+<p>And a similar example in JavaScript:</p>
+<pre><code class="lang-javascript">async function getThatUserData(userId) {
+    const url = &#39;https://example.com/api/users/&#39; + userId
+    const response = await axios.get(url)
+    if (response.status !== 200) {
+        throw new Error(&#39;Unexpected status code: &#39; + response.statusCode)
+    }
+    return response.data
+}
+</code></pre>
+<p>At first blush, these seem like good abstractions.
+All the HTTP-related handling is contained within the function;
+neither input nor output expose anything about URLs, headers, status codes, or bodies.
+But they are hard to test.</p>
+<p>Sometimes we choose to rely on integration testing for these sorts of functions.
+Unfortunately, this causes our tests to rely on an external dependency.
+If that server is down or failing for some unknown reason, our tests will fail even though our code is fine.
+Also you may not be able to test your error paths, because you cannot control the response.
+And things get even more complex when we get the idea to run our own server for testing purposes.</p>
+<p>Depending on the language and libraries we&#39;re using, it may be possible to unit test these functions.
+But even when it&#39;s possible, it is often complicated, making our tests harder to understand and maintain.</p>
+<p>So then, when testing is difficult, we may not test those functions at all.
+After all, we don&#39;t need to test the underlying HTTP library, right?
+Unfortunately, this leaves an untested gap in our request and response handling.</p>
+<h2 id="abstracting-ourselves-in-c">Abstracting Ourselves in C</h2>
+<p>To make the code easier to test, we need to separate out the HTTP library.
+Let&#39;s do this first in C#.</p>
+<p>In the code above, the HTTP request and response are both built by calling the <code>GetAsync</code> method with a url.
+To abstract the library, we can start by introducing a new interface for the piece that actually executes the HTTP calls:</p>
+<pre><code class="lang-csharp">public interface IHttpExecutor
+{
+    Task&lt;HttpResponseMessage&gt; GetAsync(string url);
+}
+
+public User GetThatUserData(string userId, IHttpExecutor executor)
+{
+    var url = $&quot;https://example.com/api/users/{userId}&quot;;
+    var response = executor.GetAsync(url).Result;
+    if (response.StatusCode != HttpStatusCode.OK)
+    {
+        throw new Exception($&quot;Unexpected status code: {response.StatusCode}&quot;);
+    }
+    var body = response.Content.ReadAsStringAsync().Result;
+    return JsonConvert.DeserializeObject&lt;User&gt;(body);
+}
+</code></pre>
+<p>For this example, I&#39;ve decided to use a method-based dependency injection to get the new <code>IHttpExecutor</code> into the code because it&#39;s simple to write in a blog post.
+But you could use class-level injection if you prefer.
+The important thing is that now we have an interface separating our code from the HTTP library.</p>
+<p>Now we can start writing tests that utilize a test double implementation of that interface.
+Then we can verify that we called the right url (by interrogating the test double)
+and we can have it return whatever <code>HttpResponseMessage</code> that we want to test.
+We can even throw exceptions as desired to represent timeouts or failures to connect.</p>
+<p>But dealing with the <code>HttpResponseMessage</code> is kind of a pain.
+How do we set up the response body?
+It isn&#39;t obvious how to set up our own response object so that <code>response.Content.ReadAsStringAsync()</code> will succeed.
+We haven&#39;t abstracted far enough from the library.</p>
+<pre><code class="lang-csharp">public class HttpResponse
+{
+    public int StatusCode { get; set; }
+    public string Body { get; set; }
+}
+
+public interface IHttpExecutor
+{
+    Task&lt;HttpResponse&gt; GetAsync(string url);
+}
+
+public User GetThatUserData(string userId, IHttpExecutor executor)
+{
+    var url = $&quot;https://example.com/api/users/{userId}&quot;;
+    var response = executor.GetAsync(url).Result;
+    if (response.StatusCode != 200)
+    {
+        throw new Exception($&quot;Unexpected status code: {response.StatusCode}&quot;);
+    }
+    return JsonConvert.DeserializeObject&lt;User&gt;(response.Body);
+}
+</code></pre>
+<p><em>Now</em> we can easily test our code via test doubles.
+The new <code>HttpResponse</code> object is simple to instantiate with everything we need.
+Of course, we&#39;ll need a real implementation of the interface if we&#39;re going to run our code outside of testing:</p>
+<pre><code class="lang-csharp">public class HttpExecutor : IHttpExecutor
+{
+    private HttpClient httpClient = new HttpClient();
+
+    public async Task&lt;HttpResponse&gt; GetAsync(string url)
+    {
+        var response = await httpClient.GetAsync(url);
+        var body = await response.Content.ReadAsStringAsync();
+        return new HttpResponse {
+            StatusCode = (int)response.StatusCode,
+            Body = body
+        };
+    }
+}
+</code></pre>
+<p>This <code>GetAsync</code> method is hard to unit test, but it doesn&#39;t include any of the request building and response handling that was specific to our use case.
+And because it is a more generic interface (doesn&#39;t specify a particular url), it becomes easier to write integration tests for it.</p>
+<p>Over time, we can add more to our <code>HttpResponse</code> to account for things like response headers.
+We may also find that we want to create an <code>HttpRequest</code> class so that we can specify HTTP request concepts like methods, headers, and body.
+Then we could have a single <code>ExecuteAsync(HttpRequest request)</code> method that handles all kinds of requests.</p>
+<p>Of course, some HTTP libraries are better than others.
+Perhaps we should have just chosen something other than the built-in <code>HttpClient</code>?
+If we picked something with a good interface, we could have avoided creating all these extra classes.
+But the advantage of using these classes is that now we can switch the underlying implementation as needed without changing any other code.</p>
+<h2 id="going-functional-in-javascript">Going Functional in JavaScript</h2>
+<p>In the C# example, I used injection and test doubles because when I write C# I tend to use a mockist style of TDD.
+The language also required us to define a bunch of types to model HTTP.
+Let&#39;s modify our example JavaScript code using a more functional style.</p>
+<p>Our testing problem fundamentally comes down to needing to test that we&#39;ve correctly created the request and handled the response.
+But those don&#39;t have anything to do with <em>executing</em> the HTTP call, and so they could be pure functions (no I/O).
+Those are easy to test!</p>
+<pre><code class="lang-javascript">function buildRequest(userId) {
+    return {
+        url: &#39;https://example.com/api/users/&#39; + userId
+    }
+}
+
+function handleResponse(response) {
+    if (response.status !== 200) {
+        throw new Error(&#39;Unexpected status code: &#39; + response.statusCode)
+    }
+    return response.data
+}
+</code></pre>
+<p>Now we just need to compose those functions with our HTTP library in order to make an end-to-end call.</p>
+<pre><code class="lang-javascript">async function getThatUserData(userId) {
+    return handleResponse(await axios.get(buildRequest(userId).url))
+}
+</code></pre>
+<p>The only thing untested in our new method is the <code>axios.get</code> call.
+But it isn&#39;t our code, so do we really need to be testing it?
+<em>How</em> we call it is untested, but that is hard to do without taking one more step to move the <code>axios</code> call behind another function:</p>
+<pre><code class="lang-javascript">async function execute(request) {
+    return await axios.get(request.url)
+}
+
+async function getThatUserData(userId) {
+    return handleResponse(await execute(buildRequest(userId)))
+}
+</code></pre>
+<p>As with the C# example, this <code>execute</code> method is generic enough that it is easier to test than the original function that was specific to the API we wanted to call.
+Now we can think about supporting other types of requests (like POST) or replace <code>axios</code> with another library as needed.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>With the right abstractions, you can easily unit test your HTTP-related code.
+This allows you to ensure that you are building your requests correctly, verifying things like URL construction, request headers, etc.</p>
+<p>More importantly, you can now test how your code will handle all types of responses.
+We can build confidence in how we process the data on a successful call.
+Failure cases that were hard to test, like specific 400 and 500 level status codes, request timeouts, and even malformed responses are now easy to test.</p>
+<p>This approach of abstracting hard-to-test invocations can also be used in other similar situations, such as database calls.
+Abstracting libraries and other dependencies can add a lot of flexibility to your code while also making it more testable.</p>
+
+    <hr>
+    <p>
+        <a href="/blog">Blog Index</a>
+        <br/>Newer: <a href="no-perfect-architecture">No Perfect Architecture</a>
+        <br/>Older: <a href="managing-technical-debt">Managing Technical Debt</a>
+    </p>
+</article>
+        </div>
+    </body>
+</html>
