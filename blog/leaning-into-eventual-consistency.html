@@ -39,7 +39,7 @@ When the user sees her number of likes, it&#39;s already out of date.</p>
 <p>When we use an ACID database (e.g. a SQL relational database), the user will get 101 back and we tend to say, &quot;That&#39;s fine, because that was the value when the query occurred.&quot;
 But if we use a BASE database (such as Cassandra), it&#39;s possible that they could get a value of 100 back.
 This often makes developers uncomfortable, but in reality, there are many cases where that is good enough.</p>
-<h2 id="how-good-is-good-enough-">How Good is Good Enough?</h2>
+<h2 id="how-good-is-good-enough">How Good is Good Enough?</h2>
 <p>Eventually consistent systems do not yield random data.
 All of the values you can get back were valid at some point in time.
 So the key to determining what is &quot;good enough&quot; lies in determining how time sensitive each piece of data is.

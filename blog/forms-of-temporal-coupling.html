@@ -34,8 +34,7 @@ such as requiring some kind of <code>init()</code> to be called before you can c
 <p>Here&#39;s a simple example:</p>
 <pre><code>var circle = new Circle();
 circle.setRadius(10);
-circle.getCircumference(); // throws if you haven&#39;t called setRadius() first!
-</code></pre><p>The above example is contrived, but illustrates the point.
+circle.getCircumference(); // throws if you haven&#39;t called setRadius() first!</code></pre><p>The above example is contrived, but illustrates the point.
 This type of code is fairly common, though the class and method names sometimes disguise it.</p>
 <p>The main problem caused by this sequential type of temporal coupling is that developers must know the required order that things must be done.
 If that ordering is not clear or enforced in some way, then you may end up with unexpected exceptions &mdash; or worse, bad data is passed downstream.
