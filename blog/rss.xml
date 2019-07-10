@@ -6,6 +6,13 @@
         <link>http://allan-stewart.github.io/blog/rss.xml</link>
         <atom:link href="http://allan-stewart.github.io/blog/rss.xml" rel="self" type="application/rss+xml" />
         <item>
+            <title>Making Technical Debt Visible</title>
+            <link>http://allan-stewart.github.io/blog/making-tech-debt-visible</link>
+            <description>One of the problems with [technical debt](https://martinfowler.com/bliki/TechnicalDebt.html) is that it is effectively invisible. Usually only the coders can detect it, and even they can't always see it clearly. So how can we make it visible for other people, so they understand the impact? Without that, how we can make effective business decisions?</description>
+            <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
+            <guid>http://allan-stewart.github.io/blog/making-tech-debt-visible</guid>
+        </item>
+        <item>
             <title>No Perfect Architecture</title>
             <link>http://allan-stewart.github.io/blog/no-perfect-architecture</link>
             <description>What sort of software architecture should you be implementing? When looking at industry trends, blogs, conference talks, and the like, it is easy to think that other companies have everything figured out. You'd be forgiven for wanting to copy the success that others are having. But there is no perfect architecture. Everything is a set of tradeoffs; there are only good and bad fits for a context.</description>

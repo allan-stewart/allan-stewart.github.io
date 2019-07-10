@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <title>Allan Stewart - Making Technical Debt Visible</title>
+        <meta name="description" content="Allan Stewart's personal website">
+        <meta name="keywords" content="software craftsman professional developer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="/favicon.jpg">
+        <link rel="shortcut icon" sizes="144x144" href="/favicon144.jpg">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="alternate" type="application/rss+xml" href="http://allan-stewart.github.io/blog/rss.xml" />
+        
+    </head>
+    <body>
+        <nav>
+            <p><a href="/">ALLAN STEWART</a></p>
+<ul>
+    <li><a href="/blog/index">Blog</a></li>
+    <li><a href="/speaking">Speaking</a></li>
+</ul>
+        </nav>
+        <div id="content">
+            <article>
+    <h1 id="making-technical-debt-visible">Making Technical Debt Visible</h1>
+<p>One of the problems with <a href="https://martinfowler.com/bliki/TechnicalDebt.html">technical debt</a> is that it is effectively invisible.
+Usually only the coders can detect it, and even they can&#39;t always see it clearly.
+So how can we make it visible for other people, so they understand the impact?
+Without that, how we can make effective business decisions?</p>
+<p>I&#39;ve been pondering these questions while reading Dominica DeGrandis&#39; excellent book, <a href="http://ddegrandis.com/book/"><em>Making Work Visible</em></a>.
+She recommends that technical debt be added to kanban boards for visibility and to prevent it from becoming neglected.
+I very much agree that this should be done, but is it enough?</p>
+<p>Putting cards on your board for technical debt adds some great visibility.
+It&#39;s a great way to help you <a href="./managing-technical-debt.html">manage tech debt</a> and help people know what initiatives are being worked on.
+But it doesn&#39;t convey a sense of the overall state of your codebase.
+It doesn&#39;t answer the questions: &quot;How much technical debt do we have?&quot; or &quot;How bad is it?&quot;</p>
+<p>For those who cannot see the technical debt, the effort may feel Sisyphean.
+No matter how many technical debt cards parade across the board, the boulder is still waiting to be pushed up the hill every morning.
+Although the value of each individual task may be understood, it is impossible to see overall progress or have a sense of when it is prudent to strategically accrue more debt.</p>
+<p>One obvious solution is to enumerate <em>all</em> of your technical debt into cards.
+But this would definitely create quite a lot of cards in your backlog.
+It&#39;s hard to deal with having so many and you&#39;d create a lot of
+<a href="./avoiding-secondary-work.html">secondary work</a>.
+Plus there&#39;s another nagging question: is it even <em>possible</em> to enumerate all of your technical debt?
+How long until that carefully created list is woefully out of date?</p>
+<h2 id="a-scale-for-technical-debt">A Scale for Technical Debt</h2>
+<p>Since the goal is to communicate an overall sense of the health of our codebase (in regards to technical debt), there is no need to create long lists of all our debt.
+Honestly, most non-coders don&#39;t even understand much of the list anyway, so it doesn&#39;t provide them much value.</p>
+<p>Instead, we can focus on providing a general sense of how the technical debt is affecting our ability to deliver.
+I suggest that you rate your technical debt on a scale from 1 to 5 where:</p>
+<ul>
+<li>1 means your technical debt is well-managed and rarely interferes with feature development.</li>
+<li>5 means your technical debt is debilitating; literally it is hard to get <em>anything</em> done.</li>
+</ul>
+<p>Coders (who can detect the debt) should be the ones doing the rating.
+They just need to come to consensus on the number.
+If there are disagreements, use these to have a discussion about the state of the code until you can agree.
+If the group cannot easily come to an agreement, just take the average score and round up.</p>
+<p>Communicating your number on this scale is an easy way to give others the information they need without needing to go into a lot of detail.
+It takes very little work to determine or share, and can easily be made visible on a poster or some other display.</p>
+<p>With that number in place, you can have productive discussions about business decisions.
+If the number is low, you may choose to take on some strategic debt in order to deliver an important new feature.
+When the number is high, you probably need to dedicate more capacity to paying off technical debt.</p>
+<h2 id="kitchen-metaphor">Kitchen Metaphor</h2>
+<p>In a great article about <a href="https://martinfowler.com/articles/is-quality-worth-cost.html">software quality</a>, Martin Fowler shares a great metaphor which describes why there is always technical debt in a software project:</p>
+<blockquote>
+<p>A common metaphor is that it&#39;s like cleaning up work surfaces and equipment in the kitchen. You can&#39;t not make things dirty when you cook, but if you don&#39;t clean things quickly, muck dries up, is harder to remove, and all the dirty stuff gets in the way of cooking the next dish.</p>
+</blockquote>
+<p>This metaphor is useful in explaining the technical debt scale: it&#39;s a gauge for how messy our kitchen is.
+A value of 1 is a relatively (though not completely) clean kitchen.
+A value of 5 represents a huge mess where every surface is filthy and the dirty dishes overflow from the sink.
+Working in the code is like cooking; it&#39;s hard to cook effectively in a messy kitchen.</p>
+<p>When trying the technical debt scale for the first time, I used images of clean and dirty kitchens on a poster to communicate the idea.
+The metaphor made it easy for everyone to understand the concept.
+Our developers quickly came to agreement and drew a large <code>4</code> on the poster
+(we have our work cut out for us).
+Now the poster hangs on our wall near our product planning area to keep it in mind as we plan our upcoming work.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Left unchecked, technical debt can destroy your ability to deliver business value.
+Unfortunately, it is easy to disregard because it is invisible.
+So expose that debt.
+Make it visible.</p>
+<p>Use technical debt cards on your kanban board to make your current and near-term efforts visible.
+But for the overall health of your system, consider using a technical debt scale.</p>
+
+    <hr>
+    <p>
+        <a href="/blog">Blog Index</a>
+        
+        <br/>Older: <a href="no-perfect-architecture">No Perfect Architecture</a>
+    </p>
+</article>
+        </div>
+    </body>
+</html>
