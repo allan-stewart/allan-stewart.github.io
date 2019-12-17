@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <title>Allan Stewart - Feedback Distance</title>
+        <meta name="description" content="Allan Stewart's personal website">
+        <meta name="keywords" content="software craftsman professional developer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="/favicon.jpg">
+        <link rel="shortcut icon" sizes="144x144" href="/favicon144.jpg">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="alternate" type="application/rss+xml" href="http://allan-stewart.github.io/blog/rss.xml" />
+        
+    </head>
+    <body>
+        <nav>
+            <p><a href="/">ALLAN STEWART</a></p>
+<ul>
+    <li><a href="/blog/index">Blog</a></li>
+    <li><a href="/speaking">Speaking</a></li>
+</ul>
+        </nav>
+        <div id="content">
+            <article>
+    <h1 id="feedback-distance">Feedback Distance</h1>
+<p>Getting feedback is critical for developing software.
+We need it at multiple levels, from code reviews to monitoring production systems.
+<a href="./tighening-feedback-loops.html">Feedback speed is important</a>, but it can be difficult to measure how long it takes to get feedback due to the high degree of variation inherent in the processes.
+For example, UI tests often take significantly longer when they are failing than when they are passing.
+So can we measure feedback in some other way?</p>
+<p>I started thinking about this recently when I was talking with some friends about Big O notation.
+Big O is a useful tool for approximating the time or space requirements of an algorithm.
+It doesn&#39;t tell us <em>exactly</em> how long it will take to run our code, but we know that an <em>O(n<sup>3</sup>)</em> algorithm will take longer than an <em>O(log n)</em> algorithm.</p>
+<p>We could use this same kind of concept to approximate how long it will take to get feedback based on how &quot;far away&quot; it is.</p>
+<h2 id="defining-distance-in-steps">Defining Distance in Steps</h2>
+<p>The distance to getting feedback can be measured in the number of logical steps that lie between writing code and receiving the feedback.
+Since this is an approximation, the size of each step does not matter very much.
+We need only be relatively consistent in how we measure a step.</p>
+<p>The shortest distance we could measure is zero.
+For example, when we write a bit of code that has a syntax error, an IDE can show us the problem right away (usually with some red squiggles underlining the problem).
+The computer is so quick in this case that it takes effectively no time; the feedback is immediate.</p>
+<p>Running unit tests could be measured as one step: running the tests.
+Or it could be zero steps if the tests are running automatically after each change (and they run quickly enough to be considered immediate).</p>
+<p>To get a few more steps in, let&#39;s consider getting coworker feedback from a pull request.
+After writing the code:</p>
+<ol>
+<li>Commit and push</li>
+<li>Create the pull request</li>
+<li>Coworker reviews the pull request</li>
+</ol>
+<p>So then, this example has a feedback distance of three steps.</p>
+<p>Let&#39;s consider a longer example of getting customer feedback about our product running in production:</p>
+<ol>
+<li>Commit and push the code</li>
+<li>Compile and run unit tests via a CI job</li>
+<li>Deploy to a staging environment</li>
+<li>Verify the deployment (e.g. UI testing)</li>
+<li>Deploy to production</li>
+<li>Collect feedback</li>
+</ol>
+<p>The feedback distance here is six steps.
+Six may not seem much bigger, but in this method of measurement, each further step often takes longer than the previous ones.</p>
+<h2 id="making-use-of-distance">Making Use of Distance</h2>
+<p>Now we have a way of measuring distance, and from that we can infer an approximation of how long it will take.
+So what can we do with it?
+We can use it to figure out where we can speed up our feedback cycles.</p>
+<p>When you start considering feedback distance, you may find you want to choose a different way of working.
+Since pull requests have a distance of three steps, you might decide to use a spell checker or linter to get to zero distance feedback for those types of issues.
+Or you might choose to start pair programming to reduce <em>all</em> of your coding feedback distance down to zero!</p>
+<p>Manual processes often have more logical steps than automated ones.
+You can use feedback distance as a guide to picking which tasks could be automated in order to reduce the number of steps.</p>
+<p>Finally, feedback distance could also be used to recognize when to use an alternate path to get feedback because the usual path is too long.
+For example, you might want to use rapid prototyping or painted door test techniques to learn from customers before engaging in the full development cycle.</p>
+
+    <hr>
+    <p>
+        <a href="/blog">Blog Index</a>
+        
+        <br/>Older: <a href="making-tech-debt-visible">Making Technical Debt Visible</a>
+    </p>
+</article>
+        </div>
+    </body>
+</html>
