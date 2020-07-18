@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <title>Allan Stewart - Resilient Programming</title>
+        <meta name="description" content="Allan Stewart's personal website">
+        <meta name="keywords" content="software craftsman professional developer">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="/favicon.jpg">
+        <link rel="shortcut icon" sizes="144x144" href="/favicon144.jpg">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="alternate" type="application/rss+xml" href="http://allan-stewart.github.io/blog/rss.xml" />
+        
+    </head>
+    <body>
+        <nav>
+            <p><a href="/">ALLAN STEWART</a></p>
+<ul>
+    <li><a href="/blog/index">Blog</a></li>
+    <li><a href="/speaking">Speaking</a></li>
+</ul>
+        </nav>
+        <div id="content">
+            <article>
+    <h1 id="resilient-programming">Resilient Programming</h1>
+<p>Conventional wisdom holds that in order to work effectively, you need to eliminate distractions.
+Interruptions can be particularly bad on software developers, as described in numerous articles, blogs, and <a href="https://heeris.id.au/2013/this-is-why-you-shouldnt-interrupt-a-programmer/">even</a> <a href="https://dilbert.com/strip/2017-01-05">comic</a> <a href="http://www.commitstrip.com/en/2018/01/11/the-war-on-interruptions/">strips</a>.
+But this is only one side of the equation.
+Are there things one can do to be more resilient to distraction?</p>
+<p>After all, we can never completely eliminate interruptions while coding.
+Tackling the usual suspects certainly helps; we can disable message notifications, block out time on our calendars, and tell our kids, &quot;I&#39;m working from home and really need you to stay out of my work space.&quot;
+But natural variation is sure to still interrupt us in unexpected ways.
+Loud noises, internet or power outages, software bugs, meetings, and so much more are all normal parts of life.
+And what about when you distract yourself?</p>
+<p>Sometimes interruptions are important.
+Maybe you <em>should</em> take that phone call, respond to that Slack message, or answer that email right now.</p>
+<h2 id="why-are-interruptions-so-disruptive">Why Are Interruptions So Disruptive?</h2>
+<p>What exactly is the problem caused by distractions?
+Certainly it pulls us away from some task to work on another one.
+Given that humans are bad at multi-tasking, we really can&#39;t continue on the first task if we&#39;re thinking about the second.
+Distractions increase the lead times for accomplishing our original task.
+Yet this is the lesser issue.</p>
+<p>The frustrating thing about interruptions is that it disrupts your working memory.
+Like a house of cards, all our mental scaffolding for the problem can collapse in an instant, causing us to have to start all over.</p>
+<p>Research since the 1960&#39;s has shown that working memory is limited to a small number of things.
+The exact number depends on the person and the type of &quot;chunk&quot; you are working with, but is rarely more than 7.
+If you only have seven &quot;registers&quot; to hold state in your mind, then it is no wonder that even small distractions can cause such a problem.
+Thinking about something else, even briefly, can clear out that memory to make room for a different context.</p>
+<h2 id="what-can-we-do-about-it">What Can We Do About It?</h2>
+<p>If interruptions are inevitable (and sometimes even necessary), is there something we can do to retain that precious working memory?
+Or at least reduce the impact by speeding up recovery?</p>
+<p>In his book, <em>The Design of Everyday Things</em>, Don Norman talks how we can compensate for our limited memory by putting information into the world around us.
+This could be as simple as writing down notes, or it could be something more complicated like developing new mental models or adding constraints.</p>
+<p>Putting information into the world is a powerful way to mitigate the impact of distractions.
+Let&#39;s look at several software development practices which I&#39;ve found to be very effective at building programming resiliency.</p>
+<h3 id="refactor-to-named-abstractions">Refactor to Named Abstractions</h3>
+<p>When working with difficult-to-read code, a programmer has to decipher what the code does and why.
+If interrupted during this process, you may have to start over from the beginning.
+But if you edit the code as you go, assigning better variable names and extracting functions (or even classes) that provide meaning, these new names reduce the difficulty of understanding it after the interruption.</p>
+<p>Abstraction is a powerful memory aid.
+Instead of having to remember many specific details, we can bundle them up into a single idea or concept.
+For example, if I ask you to &quot;go buy some milk&quot; you only need to remember one thing (the milk) despite the many steps that may be involved (how you get to the store, which store you go to, finding the milk, purchasing, and so forth).</p>
+<p>We do the same thing all the time in code.
+Instead of worrying about the details of how to write bits to disk, we use a file system abstraction with simple methods like <code>save(filename, data)</code>.</p>
+<p>Using safe refactoring methods (especially if you have tooling to do it for you) is better than just taking notes or adding comments to the code.
+You make it easier to understand going forward, and if you&#39;re interrupted you can pick up where you left off more easily with fewer, more abstract concepts.</p>
+<h3 id="test-driven-development">Test Driven Development</h3>
+<p>When practicing TDD, the test suite you are writing can be very helpful as a placeholder for what you were doing&mdash;especially if you leave off with a failing test. If something comes up, try to get to the next failing test before pausing to deal with it.</p>
+<p>When resuming from an interruption (or picking back up the next day), a well-named, failing test can help you understand what you were trying to accomplish.
+The failure message tells you exactly what to do next.
+Even if you can&#39;t remember all the details, working on getting that test to pass lets you make progress while you rebuild your mental context.</p>
+<h3 id="collaborative-coding">Collaborative Coding</h3>
+<p>When pair or mob programming, a distraction need not disrupt the entire team.
+One person can handle the interrupting issue, then rejoin the other(s) to get caught up again.
+Progress can continue during what would otherwise be disrupted time, or at least there is someone else to remember what you were working on.</p>
+<p>Working collaboratively also requires you to vocalize your thoughts which can help everyone remember what you were doing.
+Even if the entire group is interrupted, no one person in the group needs to remember the full details.
+You can rely on the group&#39;s transactive memory to get back on track more quickly than if you were working solo.</p>
+<h3 id="small-batches">Small Batches</h3>
+<p>When tackling a large amount of work, there are literally more things to keep in mind; more things to use up your working memory slots.
+Slicing work into smaller batches means you focus on a smaller number of details.
+It also means you can complete the batch of work more quickly, so there&#39;s less opportunity for a disruption.</p>
+<p>But if you <em>are</em> interrupted, there is less of a mental modal to reconstruct.
+It&#39;s easier to have a clear understanding of what you&#39;re trying to achieve if it is small.</p>
+<h3 id="visualization">Visualization</h3>
+<p>Using a whiteboard or notepad to draw the details of a problem can help you to get a different perspective on the problem you are tackling.
+The visualization can often help you better understand the problem.
+If you are interrupted, that imagery can help you pick the problem back up more quickly.</p>
+<h2 id="develop-resiliency">Develop Resiliency</h2>
+<p>Prevention is never fool-proof.
+When we ship software we know that sometimes bugs will get out, no matter how diligent we are in trying to prevent them.
+Measuring mean time to recovery gives us a different way to frame the problem.
+Instead of trying to verify that every release is bug-free, we make it simple and fast to release bug fixes by using tools like continuous integration.</p>
+<p>Similarly, we will never solve the problem of interruptions by trying to prevent them from ever distracting us.
+But we can learn to work in disciplined ways that help us be more resilient so that the distractions aren&#39;t so damaging.</p>
+
+    <hr>
+    <p>
+        <a href="/blog">Blog Index</a>
+        
+        <br/>Older: <a href="feedback-distance">Feedback Distance</a>
+    </p>
+</article>
+        </div>
+    </body>
+</html>
