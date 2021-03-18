@@ -37,7 +37,8 @@ But if you do not properly abstract the request construction and response handli
     }
     var body = response.Content.ReadAsStringAsync().Result;
     return JsonConvert.DeserializeObject&lt;User&gt;(body);
-}</code></pre>
+}
+</code></pre>
 <p>And a similar example in JavaScript:</p>
 <pre><code class="language-javascript">async function getThatUserData(userId) {
     const url = &#39;https://example.com/api/users/&#39; + userId
@@ -46,7 +47,8 @@ But if you do not properly abstract the request construction and response handli
         throw new Error(&#39;Unexpected status code: &#39; + response.statusCode)
     }
     return response.data
-}</code></pre>
+}
+</code></pre>
 <p>At first blush, these seem like good abstractions.
 All the HTTP-related handling is contained within the function;
 neither input nor output expose anything about URLs, headers, status codes, or bodies.
@@ -61,7 +63,7 @@ But even when it&#39;s possible, it is often complicated, making our tests harde
 <p>So then, when testing is difficult, we may not test those functions at all.
 After all, we don&#39;t need to test the underlying HTTP library, right?
 Unfortunately, this leaves an untested gap in our request and response handling.</p>
-<h2 id="abstracting-ourselves-in-c">Abstracting Ourselves in C</h2>
+<h2 id="abstracting-ourselves-in-c">Abstracting Ourselves in C#</h2>
 <p>To make the code easier to test, we need to separate out the HTTP library.
 Let&#39;s do this first in C#.</p>
 <p>In the code above, the HTTP request and response are both built by calling the <code>GetAsync</code> method with a url.
@@ -81,7 +83,8 @@ public User GetThatUserData(string userId, IHttpExecutor executor)
     }
     var body = response.Content.ReadAsStringAsync().Result;
     return JsonConvert.DeserializeObject&lt;User&gt;(body);
-}</code></pre>
+}
+</code></pre>
 <p>For this example, I&#39;ve decided to use a method-based dependency injection to get the new <code>IHttpExecutor</code> into the code because it&#39;s simple to write in a blog post.
 But you could use class-level injection if you prefer.
 The important thing is that now we have an interface separating our code from the HTTP library.</p>
@@ -113,7 +116,8 @@ public User GetThatUserData(string userId, IHttpExecutor executor)
         throw new Exception($&quot;Unexpected status code: {response.StatusCode}&quot;);
     }
     return JsonConvert.DeserializeObject&lt;User&gt;(response.Body);
-}</code></pre>
+}
+</code></pre>
 <p><em>Now</em> we can easily test our code via test doubles.
 The new <code>HttpResponse</code> object is simple to instantiate with everything we need.
 Of course, we&#39;ll need a real implementation of the interface if we&#39;re going to run our code outside of testing:</p>
@@ -130,7 +134,8 @@ Of course, we&#39;ll need a real implementation of the interface if we&#39;re go
             Body = body
         };
     }
-}</code></pre>
+}
+</code></pre>
 <p>This <code>GetAsync</code> method is hard to unit test, but it doesn&#39;t include any of the request building and response handling that was specific to our use case.
 And because it is a more generic interface (doesn&#39;t specify a particular url), it becomes easier to write integration tests for it.</p>
 <p>Over time, we can add more to our <code>HttpResponse</code> to account for things like response headers.
@@ -158,11 +163,13 @@ function handleResponse(response) {
         throw new Error(&#39;Unexpected status code: &#39; + response.statusCode)
     }
     return response.data
-}</code></pre>
+}
+</code></pre>
 <p>Now we just need to compose those functions with our HTTP library in order to make an end-to-end call.</p>
 <pre><code class="language-javascript">async function getThatUserData(userId) {
     return handleResponse(await axios.get(buildRequest(userId).url))
-}</code></pre>
+}
+</code></pre>
 <p>The only thing untested in our new method is the <code>axios.get</code> call.
 But it isn&#39;t our code, so do we really need to be testing it?
 <em>How</em> we call it is untested, but that is hard to do without taking one more step to move the <code>axios</code> call behind another function:</p>
@@ -172,7 +179,8 @@ But it isn&#39;t our code, so do we really need to be testing it?
 
 async function getThatUserData(userId) {
     return handleResponse(await execute(buildRequest(userId)))
-}</code></pre>
+}
+</code></pre>
 <p>As with the C# example, this <code>execute</code> method is generic enough that it is easier to test than the original function that was specific to the API we wanted to call.
 Now we can think about supporting other types of requests (like POST) or replace <code>axios</code> with another library as needed.</p>
 <h2 id="conclusion">Conclusion</h2>
